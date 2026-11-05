@@ -1,0 +1,6 @@
+{
+  "name": "Campus Lab Finder - Natton SkillX Junior",
+  "description": "Automated School Computer Lab Verification, Priority Targeting & DPR Suite with full-register background processing that halts upon completion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
