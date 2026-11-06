@@ -69,7 +69,7 @@ export default function App() {
   }
 
   return (
-    <div className="brand-page min-h-screen flex flex-col text-slate-900 selection:bg-blue-600 selection:text-white">
+    <div className="brand-page min-h-screen flex flex-col text-slate-900 selection:bg-blue-600 selection:text-white w-full max-w-full overflow-x-hidden">
       {/* Brand Header */}
       <Header
         currentTab={currentTab}
@@ -87,7 +87,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8 min-w-0">
         {currentTab === 'SCHOOL_LABS' && (
           <SchoolLabsView
             schools={schools}

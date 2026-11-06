@@ -187,10 +187,10 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
         </p>
 
         {/* Filter Dropdowns */}
-        <div className="flex flex-wrap gap-3 text-sm pt-2 items-center">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-2 text-sm pt-2 sm:items-center w-full">
           <select
             aria-label="School area"
-            className="border border-slate-300 rounded p-2 text-xs font-medium bg-white"
+            className="border border-slate-300 rounded-xl p-2 text-xs font-medium bg-white w-full sm:w-auto"
             value={selectedArea}
             onChange={(e) => setSelectedArea(e.target.value)}
           >
@@ -204,7 +204,7 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
 
           <select
             aria-label="School board"
-            className="border border-slate-300 rounded p-2 text-xs font-medium bg-white"
+            className="border border-slate-300 rounded-xl p-2 text-xs font-medium bg-white w-full sm:w-auto"
             value={selectedBoard}
             onChange={(e) => setSelectedBoard(e.target.value)}
           >
@@ -219,7 +219,7 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
           {uniqueSheets.length > 1 && (
             <select
               aria-label="Sheet tab"
-              className="border border-indigo-300 rounded p-2 text-xs font-bold bg-indigo-50/80 text-indigo-900"
+              className="border border-indigo-300 rounded-xl p-2 text-xs font-bold bg-indigo-50/80 text-indigo-900 w-full sm:w-auto"
               value={selectedSheet}
               onChange={(e) => setSelectedSheet(e.target.value)}
             >
@@ -232,7 +232,7 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
             </select>
           )}
 
-          <span className="p-2 text-xs text-slate-600 font-semibold">
+          <span className="text-xs text-slate-600 font-semibold py-1">
             {filtered.length} schools in this group
           </span>
         </div>
@@ -242,20 +242,20 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
       {showCompletionToast && (
         <div className="p-3.5 bg-emerald-50 border border-emerald-300 rounded-2xl text-emerald-950 flex items-center justify-between text-xs font-bold animate-in fade-in">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>✓ Verification finished! Reached the end of the file. Background runner stopped automatically.</span>
           </div>
           <button
             onClick={() => setShowCompletionToast(false)}
-            className="text-emerald-800 hover:underline cursor-pointer"
+            className="text-emerald-800 hover:underline cursor-pointer shrink-0 ml-2"
           >
             Dismiss
           </button>
         </div>
       )}
 
-      {/* Automatic Computer Lab verification card exactly from lovable app */}
-      <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 text-sm space-y-2 shadow-2xs">
+      {/* Automatic Computer Lab verification card */}
+      <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 text-sm space-y-3 shadow-2xs w-full max-w-full">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h3 className="font-bold text-blue-950 text-base">Automatic Computer Lab verification</h3>
@@ -270,22 +270,22 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
             </p>
           </div>
 
-          {/* Action buttons */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Action buttons - Mobile Responsive */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 w-full sm:w-auto shrink-0">
             {progress.status !== 'RUNNING' ? (
               <button
                 onClick={progress.status === 'PAUSED' ? handleResume : handleStartVerification}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <Play className="w-3.5 h-3.5 fill-current" />
-                <span>{progress.status === 'PAUSED' ? 'Resume Verification' : 'Verify Computer Labs'}</span>
+                <Play className="w-3.5 h-3.5 fill-current shrink-0" />
+                <span className="truncate">{progress.status === 'PAUSED' ? 'Resume' : 'Verify Labs'}</span>
               </button>
             ) : (
               <button
                 onClick={handlePause}
-                className="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <Pause className="w-3.5 h-3.5 fill-current" />
+                <Pause className="w-3.5 h-3.5 fill-current shrink-0" />
                 <span>Pause</span>
               </button>
             )}
@@ -293,28 +293,28 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
             {progress.status === 'RUNNING' && (
               <button
                 onClick={handleStop}
-                className="px-3 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1 cursor-pointer"
+                className="px-3 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-1 cursor-pointer"
               >
-                <Square className="w-3 h-3 fill-current" />
+                <Square className="w-3 h-3 fill-current shrink-0" />
                 <span>Stop</span>
               </button>
             )}
 
             <button
               onClick={handleExportRoadmapExcel}
-              className="px-3 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl shadow-2xs flex items-center gap-1 cursor-pointer"
+              className="px-3 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl shadow-2xs flex items-center justify-center gap-1 cursor-pointer"
               title="Download Excel spreadsheet with lab findings"
             >
-              <Download className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Export Excel</span>
+              <Download className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              <span>Excel</span>
             </button>
             <button
               onClick={handleExportRoadmapWord}
-              className="px-3 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl shadow-2xs flex items-center gap-1 cursor-pointer"
+              className="px-3 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl shadow-2xs flex items-center justify-center gap-1 cursor-pointer"
               title="Download Microsoft Word document (.docx) with lab findings"
             >
-              <FileText className="w-3.5 h-3.5 text-blue-600" />
-              <span>Export Word</span>
+              <FileText className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+              <span>Word</span>
             </button>
           </div>
         </div>
@@ -323,8 +323,8 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
         {progress.status === 'RUNNING' && (
           <div className="space-y-1 pt-1">
             <div className="flex items-center justify-between text-[11px] text-blue-900 font-mono">
-              <span>{progress.message || `Checking school ${progress.currentIndex + 1} of ${total}...`}</span>
-              <span>{percentComplete}%</span>
+              <span className="truncate mr-2">{progress.message || `Checking school ${progress.currentIndex + 1} of ${total}...`}</span>
+              <span className="shrink-0">{percentComplete}%</span>
             </div>
             <div className="w-full h-2 bg-blue-200 rounded-full overflow-hidden">
               <div
@@ -339,36 +339,38 @@ export const SchoolLabsView: React.FC<SchoolLabsViewProps> = ({
           Queued = waiting to be searched. Checking = lookup in progress. Unverified = search completed without conclusive evidence. Lookup failed = source error. Yes/No requires explicit evidence; results refresh automatically.
         </p>
 
-        {/* Status Filter Buttons */}
-        <div className="flex flex-wrap gap-2 pt-1 text-xs">
-          {[
-            { label: 'All', value: 'ALL', count: total },
-            { label: 'Yes', value: 'Yes', count: countYes },
-            { label: 'No', value: 'No', count: countNo },
-            { label: 'Checking', value: 'Checking', count: progress.status === 'RUNNING' ? 1 : 0 },
-            { label: 'Queued', value: 'Queued', count: countQueued },
-            { label: 'Unverified', value: 'Unverified', count: countUnverified },
-          ].map((item) => (
-            <button
-              key={item.value}
-              onClick={() => setSelectedStatusFilter(item.value)}
-              className={`border rounded-lg px-3 py-1 font-medium transition-colors cursor-pointer ${
-                selectedStatusFilter === item.value
-                  ? 'bg-blue-600 text-white border-blue-600 shadow-2xs'
-                  : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-50'
-              }`}
-            >
-              {item.label}: {item.count}
-            </button>
-          ))}
-          {selectedStatusFilter !== 'ALL' && (
-            <button
-              onClick={() => setSelectedStatusFilter('ALL')}
-              className="underline text-blue-700 text-xs px-2 cursor-pointer"
-            >
-              Clear filter
-            </button>
-          )}
+        {/* Status Filter Buttons - Touch Scrollable */}
+        <div className="w-full max-w-full overflow-x-auto no-scrollbar py-1">
+          <div className="flex items-center gap-1.5 text-xs w-max">
+            {[
+              { label: 'All', value: 'ALL', count: total },
+              { label: 'Yes', value: 'Yes', count: countYes },
+              { label: 'No', value: 'No', count: countNo },
+              { label: 'Checking', value: 'Checking', count: progress.status === 'RUNNING' ? 1 : 0 },
+              { label: 'Queued', value: 'Queued', count: countQueued },
+              { label: 'Unverified', value: 'Unverified', count: countUnverified },
+            ].map((item) => (
+              <button
+                key={item.value}
+                onClick={() => setSelectedStatusFilter(item.value)}
+                className={`border rounded-lg px-2.5 py-1 font-medium transition-colors cursor-pointer shrink-0 ${
+                  selectedStatusFilter === item.value
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-2xs'
+                    : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-50'
+                }`}
+              >
+                {item.label}: {item.count}
+              </button>
+            ))}
+            {selectedStatusFilter !== 'ALL' && (
+              <button
+                onClick={() => setSelectedStatusFilter('ALL')}
+                className="underline text-blue-700 text-xs px-2 cursor-pointer shrink-0"
+              >
+                Clear
+              </button>
+            )}
+          </div>
         </div>
       </div>
 

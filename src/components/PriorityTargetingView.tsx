@@ -194,8 +194,8 @@ export const PriorityTargetingView: React.FC<PriorityTargetingViewProps> = ({
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-4 shadow-xs flex flex-wrap items-center justify-between gap-3">
-        <div className="relative min-w-[240px] flex-1 max-w-md">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-3.5 sm:p-4 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full max-w-full">
+        <div className="relative w-full sm:flex-1 max-w-md">
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -206,11 +206,11 @@ export const PriorityTargetingView: React.FC<PriorityTargetingViewProps> = ({
           />
         </div>
 
-        <div className="flex items-center gap-2 text-xs">
+        <div className="flex flex-wrap items-center gap-2 text-xs w-full sm:w-auto">
           <select
             value={selectedPriority}
             onChange={(e) => setSelectedPriority(e.target.value)}
-            className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-pointer"
+            className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-pointer flex-1 sm:flex-none"
           >
             <option value="ALL">All Priority Levels</option>
             <option value="P1_CRITICAL">P1 Critical Only</option>
@@ -219,22 +219,22 @@ export const PriorityTargetingView: React.FC<PriorityTargetingViewProps> = ({
             <option value="P4_LOW">P4 Low Only</option>
           </select>
 
-          <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200">
+          <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200 shrink-0">
             <button
               onClick={() => setViewMode('TABLE')}
-              className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-colors ${
+              className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-colors cursor-pointer ${
                 viewMode === 'TABLE' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-900'
               }`}
             >
-              Table View
+              Table
             </button>
             <button
               onClick={() => setViewMode('CARDS')}
-              className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-colors ${
+              className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-colors cursor-pointer ${
                 viewMode === 'CARDS' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-900'
               }`}
             >
-              Cards View
+              Cards
             </button>
           </div>
         </div>
@@ -242,12 +242,12 @@ export const PriorityTargetingView: React.FC<PriorityTargetingViewProps> = ({
 
       {/* Target Content */}
       {viewMode === 'TABLE' ? (
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden">
-          <div className="overflow-x-auto">
+        <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xs overflow-hidden w-full max-w-full">
+          <div className="overflow-x-auto min-w-0 w-full">
             <table className="w-full text-left text-xs">
               <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase tracking-wider text-[10px]">
                 <tr>
-                  <th className="p-3.5 pl-5">Priority & Rank</th>
+                  <th className="p-3.5 pl-4 sm:pl-5">Priority & Rank</th>
                   <th className="p-3.5">School Details</th>
                   <th className="p-3.5">Visit Age & Score</th>
                   <th className="p-3.5">Targeting Rationale</th>

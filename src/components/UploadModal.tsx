@@ -638,7 +638,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({ onClose, onSuccess }) 
                     Multiple Sheet Tabs Detected ({parsedSheets.length} Sheets)
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs">
                   <label className="flex items-center gap-1.5 font-bold text-slate-700 cursor-pointer">
                     <input
                       type="radio"
@@ -663,7 +663,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({ onClose, onSuccess }) 
               </div>
 
               {/* Sheet Tab Switcher */}
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 w-full max-w-full">
                 <span className="text-[11px] font-bold text-slate-500 shrink-0 mr-1">Preview Tab:</span>
                 {parsedSheets.map((sheet, sIdx) => (
                   <button
